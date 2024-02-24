@@ -13,5 +13,5 @@ func NewHomeHandler() *HomeHandler {
 }
 
 func (h *HomeHandler) ServeHTTP(e echo.Context) error {
-	return utils.Render(e, templates.Home("Home"))
+	return utils.Render(e, templates.Home("Home", ""))
 }

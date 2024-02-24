@@ -13,5 +13,5 @@ func NewPostBookSummaryHandler() *PostBookSummaryHandler {
 }
 
 func (h *PostBookSummaryHandler) ServeHTTP(e echo.Context) error {
-	return utils.Render(e, templates.Home("POST!"))
+	return utils.Render(e, templates.BookSummaryDetails("TEST"))
 }

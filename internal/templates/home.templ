@@ -1,11 +1,52 @@
 package templates
 
-templ Home(title string) {
+templ form() {
+	<form
+		method="POST"
+		action="/book-summary"
+		hx-post="/book-summary"
+		hx-target="#BookSummaryDetails"
+	>
+		<div>
+			<label for="bookName">Book Name</label>
+			<input id="bookName" name="bookName" class="form-input"/>
+		</div>
+		<div>
+			<label for="type">Type</label>
+			<select id="type" name="type" class="form-input">
+				<option value="page">Page</option>
+				<option value="chapter">Chapter</option>
+			</select>
+		</div>
+		<div>
+			<label for="from">From</label>
+			<input id="from" name="from" class="form-input"/>
+		</div>
+		<div>
+			<label for="to">To</label>
+			<input id="to" name="to" class="form-input"/>
+		</div>
+		<div>
+			<button type="submit">Submit</button>
+		</div>
+	</form>
+}
+
+templ BookSummaryDetails(details string) {
+	<div id="BookSummaryDetails">
+		if details != "" {
+			<p>{ details }</p>
+		}
+	</div>
+}
+
+templ Home(title string, details string) {
 	@Layout(title) {
 		<h1>Book Summary</h1>
 		<div>
 			<p>Generate a summary of the book you are reading up to a certain page/chapter/etc...</p>
 		</div>
-		<form hx-post="/book-summary" hx-></form>
+		@form()
+		@BookSummaryDetails(details)
 	}
 }
