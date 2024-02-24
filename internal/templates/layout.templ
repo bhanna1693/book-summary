@@ -1,0 +1,37 @@
+package templates
+
+templ header(title string) {
+	<head>
+		<title>{ title }</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+		// <script src="static/script/htmx.min.js" nonce={ ctx.Value("htmxNonce").(string) }></script>
+		// <script src="static/script/response-targets.js" nonce={ ctx.Value("responseTargetsNonse").(string) }></script>
+		<link rel="stylesheet" href="static/css/style.css"/>
+	</head>
+}
+
+templ footer() {
+	<footer class="bg-blue-600 p-4"></footer>
+}
+
+templ nav() {
+	<nav class="bg-blue-600 p-4">
+		<a class="text-gray-200" href="/">Home</a>
+		<a class="text-gray-200" href="/register">Register</a>
+		<a class="text-gray-200" href="/login">Login</a>
+		<a class="text-gray-200" href="/about">About</a>
+	</nav>
+}
+
+templ Layout(title string) {
+	@header(title)
+	<body class="flex flex-col h-full">
+		@nav()
+		<main class="flex-1">
+			{ children... }
+		</main>
+	</body>
+	@footer()
+}

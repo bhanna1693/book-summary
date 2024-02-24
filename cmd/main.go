@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/bhanna1693/book-summary/internal/handlers"
+	"github.com/labstack/echo/v4"
+)
 
 func main() {
-	fmt.Println("SUPPPP")
+	fmt.Println("Book Summary App INIT...")
+	e := echo.New()
+	e.Static("/static", "static")
+	e.GET("/", handlers.NewHomeHandler().ServeHTTP)
+	e.POST("/book-summary", handlers.NewPostBookSummaryHandler().ServeHTTP)
+
+	e.Logger.Fatal(e.Start(":8080"))
 }
