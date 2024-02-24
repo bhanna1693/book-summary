@@ -2,6 +2,10 @@ package templates
 
 templ Home(title string) {
 	@Layout(title) {
-		<h1>HOME</h1>
+		<h1>Book Summary</h1>
+		<div>
+			<p>Generate a summary of the book you are reading up to a certain page/chapter/etc...</p>
+		</div>
+		<form hx-post="/book-summary" hx-></form>
 	}
 }
