@@ -4,11 +4,16 @@ import (
 	"fmt"
 
 	"github.com/bhanna1693/book-summary/internal/handlers"
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
 	fmt.Println("Book Summary App INIT...")
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Printf("Error loading .env file: %v", err)
+	}
 
 	e := echo.New()
 	e.Static("/static", "static")

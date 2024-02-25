@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/bhanna1693/book-summary/internal/templates"
 	"github.com/bhanna1693/book-summary/internal/utils"
@@ -53,7 +54,7 @@ func (h *PostBookSummaryHandler) ServeHTTP(e echo.Context) error {
 		return err
 	}
 
-	token := "REMOVE_ME"
+	token := os.Getenv("GPT_TOKEN")
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
 
