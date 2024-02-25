@@ -12,6 +12,7 @@ func main() {
 	e := echo.New()
 	e.Static("/static", "static")
 	e.GET("/", handlers.NewHomeHandler().ServeHTTP)
+	e.GET("/book-autocomplete", handlers.NewGetBookAutocompleteHandler().ServeHTTP)
 	e.POST("/book-summary", handlers.NewPostBookSummaryHandler().ServeHTTP)
 
 	e.Logger.Fatal(e.Start(":8080"))
