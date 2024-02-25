@@ -9,6 +9,7 @@ import (
 
 func main() {
 	fmt.Println("Book Summary App INIT...")
+
 	e := echo.New()
 	e.Static("/static", "static")
 	e.GET("/", handlers.NewHomeHandler().ServeHTTP)

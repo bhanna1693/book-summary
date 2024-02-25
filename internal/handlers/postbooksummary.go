@@ -53,7 +53,7 @@ func (h *PostBookSummaryHandler) ServeHTTP(e echo.Context) error {
 		return err
 	}
 
-	token := ""
+	token := "REMOVE_ME"
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
 
