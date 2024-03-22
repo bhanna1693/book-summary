@@ -2,36 +2,35 @@ package templates
 
 templ form() {
 	// use https://just-validate.dev/ for validation :)
-	<form
-		method="POST"
-		action="/book-summary"
-		hx-post="/book-summary"
-		hx-target="#BookSummaryDetails"
-	>
-		<div>
-			<label for="bookName">Book Name</label>
-			<input id="bookName" name="bookName" class="form-input" list="BookNameDatalist"/>
-			<datalist id="BookNameDatalist">
-				<option></option>
-			</datalist>
-		</div>
-		<div>
-			<label for="type">Type</label>
-			<select id="type" name="type" class="form-input">
-				<option value="page">Page</option>
-				<option value="chapter">Chapter</option>
-			</select>
-		</div>
-		<div>
-			<label for="from">From</label>
-			<input id="from" name="from" class="form-input"/>
-		</div>
-		<div>
-			<label for="to">To</label>
-			<input id="to" name="to" class="form-input"/>
-		</div>
-		<div>
-			<button type="submit">Submit</button>
+	<form method="POST" action="/book-summary" hx-post="/book-summary" hx-target="#BookSummaryDetails">
+		<div class="grid grid-cols-4 gap-4">
+			<div>
+				<label for="bookName" class="block text-sm font-medium text-gray-700">Book Name</label>
+				<input id="bookName" name="bookName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm form-input" list="BookNameDatalist"/>
+				<datalist id="BookNameDatalist">
+					<option></option>
+				</datalist>
+			</div>
+			<div>
+				<label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+				<select id="type" name="type" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm form-input">
+					<option value="page">Page</option>
+					<option value="chapter">Chapter</option>
+				</select>
+			</div>
+			<div>
+				<label for="from" class="block text-sm font-medium text-gray-700">From</label>
+				<input id="from" name="from" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm form-input"/>
+			</div>
+			<div>
+				<label for="to" class="block text-sm font-medium text-gray-700">To</label>
+				<input id="to" name="to" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm form-input"/>
+			</div>
+			<div>
+				<button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+					Submit
+				</button>
+			</div>
 		</div>
 	</form>
 }
@@ -52,11 +51,13 @@ templ BookSummaryDetails(details string) {
 
 templ Home(title string, details string) {
 	@Layout(title) {
-		<h1>Book Summary</h1>
-		<div>
-			<p>Generate a summary of the book you are reading up to a certain page/chapter/etc...</p>
-		</div>
-		@form()
-		@BookSummaryDetails(details)
+		<section class="px-3">
+			<h1>Book Summary</h1>
+			<div>
+				<p>Generate a summary of the book you are reading up to a certain page/chapter/etc...</p>
+			</div>
+			@form()
+			@BookSummaryDetails(details)
+		</section>
 	}
 }
